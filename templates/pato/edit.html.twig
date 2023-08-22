@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Patología{% endblock %}
+
+{% block body %}
+    <h1>Editar Patología</h1>
+<div class="loginform">
+    {{ include('pato/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    <a class="btn btn-secondary" href="{{ path('app_pato_index') }}">Volver a la lista </a>
+    {#
+    {{ include('pato/_delete_form.html.twig') }} #}
+    </div>
+{% endblock %}

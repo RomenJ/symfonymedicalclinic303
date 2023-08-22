@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Paciente{% endblock %}
+
+{% block body %}
+    <h1>Editar  Paciente</h1>
+
+<div class="loginform"> 
+    {{ include('paciente/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <a class="btn btn-primary" href="{{ path('app_paciente_index') }}">Volver a la lista </a>
+{#
+    {{ include('paciente/_delete_form.html.twig') }}
+#}
+ <a class="btn btn-warning " href="{{ path('app_paciente_baneame', {'id': paciente.id}) }}"><img title="Borrar paciente" class="fotoMenu" width="33px" src="/images/borrar2.png">Borrar</a>
+    </div>
+{% endblock %}

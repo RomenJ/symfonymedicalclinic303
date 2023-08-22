@@ -1,0 +1,19 @@
+
+
+
+{{ form_start(form) }}
+
+<form>
+   <div class="form-row">
+    <div class="form-group col-md-6 newForm">
+                
+    {{ form_row(form.titulo) }}
+    {{ form_row(form.descripcion) }}
+  <br/>
+  <button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
+        </div>
+    </div>
+
+
+    
+{{ form_end(form) }}

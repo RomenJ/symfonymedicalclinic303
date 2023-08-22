@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar  Prueba{% endblock %}
+
+{% block body %}
+    <h1>Editar Prueba</h1>
+<div class="loginform"> 
+    {{ include('prueba/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <a class="btn btn-secondary "href="{{ path('app_prueba_index') }}">Volver a la lista </a>
+{#
+    {{ include('prueba/_delete_form.html.twig') }} #}
+    </div>
+{% endblock %}

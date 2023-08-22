@@ -1,0 +1,51 @@
+{% if app.user %}<div class="MenuIni">
+   <fieldset class="fieldset1 border p-2">
+            <img title="icono de flaticon" class="fotoHomeBase1" width="35px" src="/images/agenda1.png">
+            <br/>
+            <p class="UserNoreg" aria-label="Welcome to Symfony Clinic, {{ app.user.username }}">Welcome to <b>  Symfony Clinic </b>Dr/Dra {{ app.user.username }}</p>
+            <h6><a class="logout" href="{{ path('app_logout') }}" aria-label="Logout">&#x2bbf;Logout</a> </h6>
+      </fieldset>
+   <fieldset class="fieldset1 border p-2">
+            <img title="Sesión"class="fotoMenu" width="33px" src="/images/diagnosticoMedic.png"><p class="seccionMenuH"> Diagnósticos</p>        
+            <a  class="Negro  btnfalse" href="{{ path('app_diagnostico_new') }}"><img title="Sesión"class="fotoMenu" width="33px" src="/images/nuevoDia.png"> Nuevo </a>
+            <a  class="Negro  btnfalse" href="{{ path('app_diagnostico_index') }}"> <img title="Sesión"class="fotoMenu" width="33px" src="/images/historial-medico1.png">Ver Listado </a>   
+             {#
+             <a  class="Negro  btnfalse" href="{{ path('app_paciente_index') }}"> Gestión de pacientes</a>
+             #}
+             
+      </fieldset>
+     <fieldset class="fieldset1 border p-2">
+        <img title="Paciente"class="fotoMenu"width="33px"src="/images/exploracionPaciente.png"><p class="seccionMenuH"> Paciente</p>
+        <a title="Alta Paciente" class="Blanco btnfalse"  href="{{ path('app_paciente_new') }}" aria-label="New patient"><img title="Sesión"class="fotoMenu" width="33px" src="/images/historial01.png">  Alta</a>
+       <a  title="Listado Pacientes"  class="Blanco btnfalse" href="{{ path('app_paciente_index') }}" aria-label="Patient list"><img title="Imagen de boton "class="fotoMenu" width="33px" src="/images/doctor1agent.png">Listado </a> 
+   </fieldset>
+ 
+    <fieldset class="fieldset1 border p-2">        
+              <img title="Fisioterapeutas" class="fotoMenu" width="33px" src="/images/doctor1.png"><p class="seccionMenuH"> Médicos</p>
+  {#<a class="Blanco btnfalseMenu2"  href="{{ path('app_user_index') }}"> <img title="Acceda a los datos de los fisioterapeutas" class="fotoMenu" width="33px" src="/images/lapiz1.png"> Listado</a>#}
+    {% if is_granted('ROLE_USER') %}
+    
+         <a  class="Negro  btnfalse" href="{{ path('app_register') }}"><img title="Alta médico"class="fotoMenu" width="33px" src="/images/doctorGuay43.png">Alta</a>
+         <a  class="Negro  btnfalse" href="{{ path('app_user_index') }}"><img title="Alta médico"class="fotoMenu" width="33px" src="/images/equipo_medico123.png">Listado </a>
+
+     {% endif %}
+
+      </fieldset>
+      </div>
+{% else %}
+
+<div class="MenuIni">  
+   <fieldset class="fieldset1 border p-2">
+         <img title="icono de flaticon" class="fotoHomeBase1" width="35px" src="/images/agenda1.png">
+         <br/>
+             <p class="UserNoreg"> <b>Usuario no registrado</b></p>
+             <a class="Negro  btnfalse" href="{{ path('app_login') }}"> Acceda a la platorma  </a>
+
+      </fieldset>
+      </div>
+{% endif %}
+
+      {#   #}
+
+
+     

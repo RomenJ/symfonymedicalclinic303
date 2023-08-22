@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Tratamiento{% endblock %}
+
+{% block body %}
+    <h1>Cree nuevo tratamiento</h1>
+  <div class="loginform"> 
+    {{ include('trat/_form.html.twig') }}
+
+    <a class="btn btn-secondary" href="{{ path('app_trat_index') }}">Volver a la lista</a>
+      </div> 
+{% endblock %}

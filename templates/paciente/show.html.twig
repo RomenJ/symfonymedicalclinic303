@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paciente{% endblock %}
+
+{% block body %}
+    <h1>Paciente: {{ paciente.name }}</h1>
+<br>
+    <img title="flaticon icon" class="fotoHome1" width="80px" src="/images/exploracionPaciente.png">
+       <br/>
+       <br/>
+    <table class="table">
+        <tbody>
+        
+          
+            <tr>
+                <th>Apellido</th>
+                <td>{{ paciente.surname }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de nacimiento</th>
+                <td>{{ paciente.dateborn ? paciente.dateborn|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Dni</th>
+                <td>{{ paciente.dni }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ paciente.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Dirección</th>
+                <td>{{ paciente.direccion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+        <h5> Diagnósticos registrados de {{ paciente.name }}</h5> 
+     <br/>
+ <table class="table table-success table-striped tablacentrada anchoCompleto">
+    <thead>
+        <tr>
+            <th class="text-center">Fecha de sesión</th>
+            <th class="text-center">Facultativo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sesion in paciente.diagnosticos|sort((a, b) => b.date <=> a.date) %}
+            <tr>
+                <td class="text-center">
+                    <a href="{{ path('app_diagnostico_show', {'id': sesion.id}) }}">
+                        {{ sesion.date ? sesion.date|date('d-m-Y') : ' ' }}
+                    </a>
+                </td>
+                <td class="text-center">
+                    <ul>
+                        {% for user in sesion.medico %}
+                            <p class="givemarginleft">
+                                <img title="Dibujo Fisio" class="fotoMenu" width="33px" src="/images/fisioterapeuta.png">
+                                {{ user.username }}
+                            </p>
+                            {% if not loop.last %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% if not loop.last %}
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+    <a  class="btn btn-info" href="{{ path('app_paciente_index') }}">Volver a la lista</a>
+
+    <a  class="btn btn-warning" href="{{ path('app_paciente_edit', {'id': paciente.id}) }}">Editar</a>
+{#
+    {{ include('paciente/_delete_form.html.twig') }} #}
+{% endblock %}

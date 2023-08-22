@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Pato{% endblock %}
+
+{% block body %}
+    <h1>Crear nueva Patología</h1>
+
+
+<img title="flaticon icon" class="fotoHome1" width="80px" src="/images/las-celulas-rojas-de-la-sangre.png">
+  <br/>
+  <br/>
+  <div class="loginform"> 
+    {{ include('pato/_form.html.twig') }}
+
+    <a class="btn btn-secondary" href="{{ path('app_pato_index') }}">Volver a la lista </a>
+    </div>
+{% endblock %}

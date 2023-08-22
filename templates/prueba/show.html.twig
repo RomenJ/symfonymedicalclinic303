@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prueba{% endblock %}
+
+{% block body %}
+    <h1>Prueba Médica:   <td>{{ prueba.titulo }}</td></h1>
+<br/>
+  
+    <img title="flaticon icon" class="fotoHome1" width="80px" src="/images/prueba_y_analisis.png">
+    <br/>
+    <br/>
+    <table class="table">
+        <tbody>
+          
+            <tr>
+                <th>Titulo</th>
+                <td>{{ prueba.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ prueba.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Borrado</th>
+                <td>{{ prueba.borrado ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-secondary" href="{{ path('app_prueba_index') }}">Volver a la lista</a>
+
+    <a  class="btn btn-warning" href="{{ path('app_prueba_edit', {'id': prueba.id}) }}">Editar</a>
+
+    {{ include('prueba/_delete_form.html.twig') }}
+{% endblock %}

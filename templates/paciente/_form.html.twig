@@ -1,0 +1,31 @@
+{{ form_start(form) }}
+
+
+
+
+
+   {#  {{ form_widget(form) }}  #}
+<form>
+   <div class="form-row">
+    <div class="form-group col-md-6 newForm">
+                
+         {#   {{ form_row(form.date, {'label': 'Fecha de la sesión'}) }} #}
+               {{ form_row(form.name) }}
+               {{ form_row(form.surname) }}
+               {{ form_row(form.dateborn ) }}
+               {{ form_row(form.dni  ) }}
+     
+                {{ form_row(form.direccion) }}
+                  {{ form_row(form.telefono) }}
+     
+     
+  
+        </div>
+    </div>
+
+
+
+
+    <button class="btn btn-primary botonbasic col-md-6">{{ button_label|default('Guardar') }}</button>
+{{ form_end(form) }}
+</form>

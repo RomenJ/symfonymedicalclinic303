@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Diagnostico{% endblock %}
+
+{% block body %}
+    <h1>Diagnóstico en detalle</h1>
+<br>
+    <img title="flaticon icon" class="fotoHome1" width="80px" src="/images/nuevoDia.png">
+       <br/>
+       <br/>
+    
+    <table class="table">
+    <tbody>
+        <tr>
+            <th class="text-center">Paciente</th>
+            <td class="text-center">{{ diagnostico.paciente ? diagnostico.paciente : '' }}</td>
+        </tr>
+        <tr>
+            <th class="text-center">Fecha del diagnóstico</th>
+            <td class="text-center">{{ diagnostico.date ? diagnostico.date|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th class="text-center">Notas</th>
+            <td class="text-center">{{ diagnostico.notas }}</td>
+        </tr>
+
+        {# Apartado de Médicos/Facultativos que atendieron al paciente/a #}
+        <tr>
+            <th class="text-center">Facultativo/s que atendieron al paciente</th>
+            <td class="text-center">
+                <ul>
+                    {% for medic in diagnostico.medico %}
+                    <li>
+                        <img title="Sesión" class="fotoMenu" width="33px" src="/images/doctor1.png" aria-label="Nombre del tratamiento"> {{ medic }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+
+        {# Apartado de pruebas empleadas #}
+        <tr>
+            <th class="text-center">Pruebas realizadas</th>
+            <td class="text-center">
+                <ul>
+                    {% for prueb in diagnostico.pruebas %}
+                    <li>
+                        <img title="Test y rendimiento físico" class="fotoMenu" width="33px" src="/images/doble-verificacion.png"> {{ prueb }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+
+        {# Apartado de patologías detectadas #}
+        <tr>
+            <th class="text-center">Patologías detectadas en la sesión diagnóstica</th>
+            <td class="text-center">
+                <ul>
+                    {% for patologia in diagnostico.patologias %}
+                    <li>
+                        <img title="Patologías y diagnóstico" class="fotoMenu" width="33px" src="/images/las-celulas-rojas-de-la-sangre.png"> {{ patologia }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+
+        {# Apartado de tratamientos prescritos #}
+        <tr>
+            <th class="text-center">Tratamientos prescritos</th>
+            <td class="text-center">
+                <ul>
+                    {% for tratam in diagnostico.trats %}
+                    <li>
+                        <img title="Tratamientos" class="fotoMenu" width="33px" src="/images/tratamieno_1.png">{{ tratam }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+    <a  class="btn btn-info minimarg2" href="{{ path('app_diagnostico_index') }}">Volver a la lista</a>
+
+    <a class="btn btn-warning minimarg2"  href="{{ path('app_diagnostico_edit', {'id': diagnostico.id}) }}">Editar</a>
+
+    {{ include('diagnostico/_delete_form.html.twig') }}
+{% endblock %}

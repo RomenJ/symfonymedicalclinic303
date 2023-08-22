@@ -1,0 +1,52 @@
+
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de tratamientos{% endblock %}
+
+{% block body %}
+    <h1>Listado de Tratamientos  </h1>
+<br/>
+
+<img title="flaticon icon" class="fotoHome1" width="60px" src="/images/tratamieno_1.png">
+
+<br/>
+<br/>
+    <a class="btn btn-primary" href="{{ path('app_trat_new') }}">Crea nuevo Tratamiento</a>
+<br/>
+<br/>
+
+<table>
+    <tr>
+        {# sorting of properties based on query components #}
+             <th><b>{{ knp_pagination_sortable(pagination, 'Título ', 'a.id') }}</b></th>
+             <th><b>{{ knp_pagination_sortable(pagination, 'Descripción ', 'a.id') }}</b></th>
+             <th><b>{{ knp_pagination_sortable(pagination, 'Acciones', 'a.id') }}</b></th>
+    </tr>
+    {# table body #}
+    {% for trat in pagination %}
+    {% if trat.borrado  != 1  %}
+       <tr>  
+                <td> <a href="{{ path('app_trat_show', {'id': trat.id}) }}">{{ trat.titulo }}</a> </td>
+                <td>{{ trat.descripcion }}</td>
+                <td>
+                       <a   class="btn btn-primary  minimarg" href="{{ path('app_trat_edit', {'id': trat.id}) }}"> <img title="Sesión" class="fotoMenu" width="33px" src="/images/editar.png">Editar</a>
+                      <hr/>
+                       <a class="btn btn-warning  minimarg" href="{{ path('app_trat_baneame', {'id': trat.id}) }}"><img title="Sesión" class="fotoMenu" width="33px" src="/images/borrar2.png">Borrar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+               {# <td colspan="5">no records found</td> #}
+            </tr>
+                   {% endif %}
+    {% endfor %}
+</table>
+{# display navigation #}
+
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+{% endblock %}

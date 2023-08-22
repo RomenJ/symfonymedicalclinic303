@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Diagnóstico{% endblock %}
+
+{% block body %}
+    <h1>Cree un nuevo Diagnóstico</h1>
+
+<div class="loginform"> 
+<img title="flaticon icon" class="fotoHome1" width="80px" src="/images/nuevoDia.png">
+<br>
+    {{ include('diagnostico/_form.html.twig') }}
+
+    <a class="btn btn-primary" href="{{ path('app_diagnostico_index') }}">Volver a la lista</a>
+
+    </div>
+{% endblock %}

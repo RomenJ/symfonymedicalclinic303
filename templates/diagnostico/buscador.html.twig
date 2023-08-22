@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Buscador!{% endblock %}
+
+{% block body %}
+
+
+    <h1>Búsqueda por paciente </h1>
+    <br/>
+        <div class="loginform">
+        <form action="/paciente/findsong2" method="POST">
+            <p>Introduzca nombre de paciente : <input type="text" name="nombresong2" size="40"></p>
+  
+            {#  <p>Introduzca título o autor: <input type="text" name="busqueda" size="40"></p>#}
+            <input type="submit" value="Buscar">
+            <input type="reset" value="Borrar búsqueda">
+      
+</form>
+
+
+<br/>
+</div>
+{% endblock %}

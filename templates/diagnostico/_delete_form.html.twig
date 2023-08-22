@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_diagnostico_delete', {'id': diagnostico.id}) }}" onsubmit="return confirm('¿Está seguro/a de borrar el diagnóstico?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ diagnostico.id) }}">
+    <button class="btn btn-danger minimarg2">Borrar</button>
+</form>

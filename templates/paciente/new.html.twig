@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alta Nuevo Paciente{% endblock %}
+
+{% block body %}
+    <h1>Alta de Nuevo Paciente</h1>
+  <br>
+    <img title="flaticon icon" class="fotoHome1" width="80px" src="/images/exploracionPaciente.png">
+       <br/>
+       <br/>
+       <div class="loginform"> 
+    {{ include('paciente/_form.html.twig') }}
+
+    <a class="btn btn-secondary" href="{{ path('app_paciente_index') }}">Volver a lista </a>
+    </div>
+{% endblock %}

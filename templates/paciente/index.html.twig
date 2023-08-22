@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paciente index{% endblock %}
+
+{% block body %}
+    <h1>Listado de pacientes</h1>
+    <br>
+    <img title="flaticon icon" class="fotoHome1" width="80px" src="/images/exploracionPaciente.png">
+       <br/>
+       <br/>
+       <a class="Blanco btn btn-primary" href="{{ path('app_paciente_new') }}">Crear nuevo paciente </a>
+       <br/>
+<table>
+    <tr>
+        {# sorting of properties based on query components #}
+             <th><b>{{ knp_pagination_sortable(pagination, 'Nombre', 'a.id') }}</b></th>
+             <th><b>{{ knp_pagination_sortable(pagination, 'Apellidos', 'a.id') }}</b></th>
+             <th><b>{{ knp_pagination_sortable(pagination, 'Fecha de nacimiento', 'a.id') }}</b></th>
+             <th><b>{{ knp_pagination_sortable(pagination, 'Teléfono ', 'a.id') }}</b></th>
+            
+    </tr>
+
+    {# table body #}
+    {% for paciente in pagination %}
+        {% if paciente.borrado  != 1  %}
+        <tr {% if loop.index is odd %}class="color"{% endif %}>
+            <tr>
+                <td>  <a class="" href="{{ path('app_paciente_show', {'id': paciente.id}) }}">{{ paciente.name }}</a></td>
+                <td>{{ paciente.surname }}</td>
+                <td>{{ paciente.dateborn ? paciente.dateborn|date('Y-m-d') : '' }}</td>
+                <td>{{ paciente.telefono }}</td>
+            
+                <td>
+                  {#  <a class="btn btn-success minimarg" href="{{ path('app_paciente_show', {'id': paciente.id}) }}">ver</a>#}
+                  <a class="btn btn-primary minimarg " href="{{ path('app_paciente_edit', {'id': paciente.id}) }}"><img title="Editar paciente" class="fotoMenu" width="33px" src="/images/editar.png">Editar</a>
+                  <a class="btn btn-warning minimarg" href="{{ path('app_paciente_baneame', {'id': paciente.id}) }}"><img title="Borrar paciente" class="fotoMenu" width="33px" src="/images/borrar2.png">Borrar</a>
+                </td>
+            </tr>
+        {% else %}
+            
+            {#
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+
+            #}
+        {% endif %}
+    {% endfor %}
+</table>
+{# display navigation #}
+
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+{% endblock %}

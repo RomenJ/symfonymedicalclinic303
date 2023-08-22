@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Búsqueda de Pacientes{% endblock %}
+
+{% block body %}
+    <h1>Resultado de la Busqueda</h1>
+    <h3>  Coincidencias con el nombre: {{nombre}} </h3> 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Telefono 1 </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for pacidat in busquedaConaciones %}
+            <tr>
+               <td>  <a class="" href="{{ path('app_paciente_show', {'id': pacidat.id}) }}">{{ pacidat.name }}</a></td>
+                <td>{{ pacidat.surname }}</td>
+
+               <td> {{ pacidat.telefono ? pacidat.telefono : 'No existe registro de teléfono' }}</td>    
+             
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no existen registro en la base de datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   
+{% endblock %}

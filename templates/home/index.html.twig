@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+   {#
+instalación de dompdf en symfony 
+   https://www.binaryboxtuts.com/php-tutorials/generating-pdf-from-html-in-symfony-6/
+   composer require dompdf/dompdf
+   
+   
+   
+   #}
+<div class="example-wrapper">
+    <h1>Diagnosis Register</h1>
+
+ <img title="flaticon icon" class="fotoHome1" width="80px" src="/images/fisioterapeuta.png">
+
+
+   <table class="table">
+        <thead>
+            <tr>
+     
+                <th>Date</th>
+                <th> Paciente </th>
+                <th> Patologías detectada </th>
+                <th>Notas</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for diagnostico in diagnosticos %}
+            <tr>
+        
+                <td>{{ diagnostico.date ? diagnostico.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ diagnostico.paciente }}</td>
+          <ul>
+         <td>
+  {% for patologia in diagnostico.patologias %}
+              <li>  {{ patologia }} </li>
+    {% endfor %}
+         </ul>
+        </td> 
+                <td>{{ diagnostico.notas }}</td>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+ 
+
+      
+</div>
+{% endblock %}

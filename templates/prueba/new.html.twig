@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva Prueba Médica{% endblock %}
+
+{% block body %}
+    <h1>Crear nueva Prueba Médica</h1>
+ <br/>
+     <img title="flaticon icon" class="fotoHome1" width="80px" src="/images/prueba_y_analisis.png">
+   <br/>
+   <br/>
+   <div class="loginform"> 
+    {{ include('prueba/_form.html.twig') }}
+
+    <a  class="btn btn-secondary" href="{{ path('app_prueba_index') }}">Volver a la lista</a>
+    </div>
+{% endblock %}

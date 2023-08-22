@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de pruebas{% endblock %}
+
+{% block body %}
+    <h1>Listado de Pruebas Médicas</h1>
+    <br/>
+    <img title="flaticon icon" class="fotoHome1" width="60px" src="/images/prueba_y_analisis.png">
+    <br/>
+    <br/>
+     <a class="btn btn-primary" href="{{ path('app_prueba_new') }}">Crear nueva prueba</a>
+    <br/>
+    <br/>
+     {# table body #}
+ <table>
+    <tr>
+        {# sorting of properties based on query components #}
+             <th><b>{{ knp_pagination_sortable(pagination, 'Título ', 'a.id') }}</b></th>
+             <th><b>{{ knp_pagination_sortable(pagination, 'Descripción  ', 'a.id') }}</b></th>
+             <th><b>{{ knp_pagination_sortable(pagination, 'Acciones', 'a.id') }}</b></th>
+    </tr>
+    {# table body #}
+
+    {% for prueba in pagination %}
+            <tr>
+             
+                <td> <a href="{{ path('app_prueba_show', {'id': prueba.id}) }}">{{ prueba.titulo }}</a></td>
+               {# <td>{{ prueba.descripcion }}</td>#}
+                <td>{{prueba.descripcion }}</td>           
+                <td>         
+                 <a class="btn btn-primary minimarg " href="{{ path('app_prueba_edit', {'id': prueba.id}) }}"><img title="Sesión" class="fotoMenu" width="33px" src="/images/editar.png"> Editar</a>
+                 <hr/>
+                 <a class="btn btn-warning minimarg" href="{{ path('app_prueba_baneame', {'id':  prueba.id}) }}"><img title="Sesión" class="fotoMenu" width="33px" src="/images/borrar2.png">Borrar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No se han encontrado registros</td>
+            </tr>
+        {% endfor %}
+        </table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
+
+
+
+
+
+        {#versión sin paginar 
+
+<table class="table">
+        <thead>
+            <tr>
+            
+                <th>Titulo</th>
+               
+                <th>Borrado</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+
+
+        {% for prueba in pruebas %}
+            <tr>
+             
+                <td> <a href="{{ path('app_prueba_show', {'id': prueba.id}) }}">{{ prueba.titulo }}</a></td>
+               {# <td>{{ prueba.descripcion }}</td>#}
+
+               {#
+                <td>{{ prueba.borrado ? 'Yes' : 'No' }}</td>
+                <td>
+                   
+                    <a class="btn btn-warning" href="{{ path('app_prueba_edit', {'id': prueba.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No se han encontrado registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+#}
+   
+{% endblock %}

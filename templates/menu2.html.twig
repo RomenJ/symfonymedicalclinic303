@@ -1,0 +1,37 @@
+  
+  {% if app.user %}
+
+ {% if is_granted('ROLE_USER') %}
+<fieldset class="fieldset1 border p-2" aria-label="Buscador de pacientes">
+   <img title="Buscador Lupa" class="fotoMenu" width="33px" src="/images/busqueda.png"><p class="seccionMenuH"> Buscador</p>
+  
+    {% if is_granted('ROLE_USER') %}
+    <a class="Negro  btnfalse" href="{{path('app_diagnostico_findgen') }}"> <img title="Acceda a los datos" class="fotoMenu" width="33px" src="/images/flecha-correcta1.png"> Buscar paciente</a>
+ {% endif %} 
+     {% endif %} 
+ </fieldset>
+
+ <fieldset class="fieldset1 border p-2" aria-label="Patologías y diagnóstico">
+     <img title="Patologías y diagnóstico" class="fotoMenu" width="33px" src="/images/las-celulas-rojas-de-la-sangre.png"><p class="seccionMenuH"> Patologías</p>
+        
+      <a class="Negro  btnfalse" href="{{ path('app_pato_new') }}"> <img title="Patologías listado" class="fotoMenu" width="33px" src="/images/cancer.png"> Nueva</a>
+      <a class="Negro  btnfalse"  href="{{ path('app_pato_index') }}"> <img title="Patologías nueva" class="fotoMenu" width="33px" src="/images/agenda2.png"> Listado</a>
+ </fieldset>
+ <fieldset class="fieldset1 border p-2" aria-label="Tratamientos">
+    <img title="Tratamientos" class="fotoMenu" width="33px" src="/images/tratamieno_1.png"><p class="seccionMenuH"> Tratamientos</p>
+    <a class="Negro  btnfalse" href="{{ path('app_trat_new') }}"><img title="Nuevo tratamiento" class="fotoMenu" width="33px" src="/images/inyeccion1.png">  Nuevo</a>
+    <a class="Negro  btnfalse" href="{{ path('app_trat_index') }}"> <img title="Ver listado de tratamientos" class="fotoMenu" width="33px" src="/images/agenda1.png">  Listar</a>
+ </fieldset>
+<fieldset class="fieldset1 border p-2" aria-label="Pruebas médicas ">
+     <img title="Test y rendimiento físico"class="fotoMenu" width="33px" src="/images/prueba_y_analisis.png"><p class="seccionMenuH"> Pruebas Médicas</p>
+      <a class="Negro  btnfalse"  href="{{ path('app_prueba_new')}}"> <img title="Alta prueba médica" class="fotoMenu" width="33px" src="/images/micro1.png"> Nueva P</a>
+      <a class="Negro  btnfalse" href="{{ path('app_prueba_index') }}"> <img title="Tests del área medial " class="fotoMenu" width="33px" src="/images/agenda2.png">  Listar</a>
+ </fieldset>
+{% else %}
+
+<fieldset class="fieldset1 border p-2" aria-label="Test y rendimiento físico">
+     <img title="Test y rendimiento físico"class="fotoMenu" width="33px" src="/images/prueba_y_analisis.png"><p class="UserNoreg">BD Médica Symfony </p>
+      <a class="Negro  btnfalse"  href="https://www.who.int/es"> <img title="Tests del área superior" class="fotoMenu" width="33px" src="/images/flecha-arriba1.png"> Visitar nuestra web</a>
+      
+ </fieldset>
+{% endif %}

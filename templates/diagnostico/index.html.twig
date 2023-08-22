@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de diagnósticos{% endblock %}
+
+{% block body %}
+    <h1>Realice diagnósticos</h1>
+    <img title="flaticon icon" class="fotoHome1" width="80px" src="/images/nuevoDia.png">
+       <br/>
+       <br/>
+       <p> <a class="btn btn-primary" href="{{ path('app_diagnostico_new') }}">Crear nuevo diagnóstico</a></p>
+<table>
+    <tr>
+        {# sorting of properties based on query components #}
+             <th><b>{{ knp_pagination_sortable(pagination, 'Fecha del diagnóstico', 'a.id') }}</b></th>
+             <th><b>{{ knp_pagination_sortable(pagination, 'Paciente', 'a.id') }}</b></th>
+             <th><b>{{ knp_pagination_sortable(pagination, 'Patologíaa detectada', 'a.id') }}</b></th>
+           <th><b>{{ knp_pagination_sortable(pagination, 'Facultativos que atendieron al paciente', 'a.id') }}</b></th>
+             <th><b>{{ knp_pagination_sortable(pagination, ' Tratmientos empleados', 'a.id') }}</b></th>
+             <th><b>{{ knp_pagination_sortable(pagination, 'Acciones', 'a.id') }}</b></th>
+             
+    </tr>
+
+    {# table body #}
+   <tbody>
+        {% for diagnostico in pagination %}
+            <tr>
+              <td><a class="" href="{{ path('app_diagnostico_show', {'id': diagnostico.id}) }}" aria-label="Fecha de la sesión">{{ diagnostico.date ? diagnostico.date|date('d-m-Y H:i:s') : ''}}</a></td>
+                  <td><a class="" href="{{ path('app_paciente_show', {'id': diagnostico.paciente.id }) }}" aria-label="Nombre del paciente">{{  diagnostico.paciente }}</a></td>     
+          <ul>
+         
+         
+         <td>
+    {% for patologia in diagnostico.patologias %}
+              <li>  {{ patologia }} <img title="Sesión" class="fotoMenu" width="33px" src="/images/las-celulas-rojas-de-la-sangre.png" aria-label="Patología"> </li>
+    {% endfor %}
+         </ul>
+        </td> 
+
+        <ul>
+         <td>
+    {% for medico in diagnostico.medico %}
+
+
+                    <a href="{{ path('app_user_show', {'id': medico.id }) }}"> {{ medico }} <img title="Sesión" class="fotoMenu" width="33px" src="/images/fisioterapeuta.png" aria-label="Nombre del terapeuta"></a>
+  
+  {#  <p>{{terapeuta.username }} <img title="Sesión" class="fotoMenu" width="33px" src="/images/fisioterapeuta.png" aria-label="Nombre del terapeuta"></p> #}
+    {% endfor %}
+
+
+         </ul>
+        </td>
+                
+
+        <ul>
+         <td>
+    {% for medico in diagnostico.trats %}
+
+
+                    <a href="{{ path('app_trat_show', {'id': medico.id }) }}"> {{ medico }} <img title="Sesión" class="fotoMenu" width="33px" src="/images/tratamieno_1.png" aria-label="Nombre del terapeuta"></a>
+  
+  {#  <p>{{terapeuta.username }} <img title="Sesión" class="fotoMenu" width="33px" src="/images/fisioterapeuta.png" aria-label="Nombre del terapeuta"></p> #}
+    {% endfor %}
+
+
+         </ul>
+        </td>
+                
+
+
+
+
+
+                <td class="fullW">
+                  {# <p> <a class="btn btn-primary" href="{{ path('app_diagnostico_show', {'id': diagnostico.id}) }}">Ver datos de la sesión</a></p> #}
+                   <p> <a  class="btn btn-primary minimarg2" href="{{ path('app_diagnostico_edit', {'id': diagnostico.id}) }}"><img title="Sesión" class="fotoMenu" width="33px" src="/images/editar.png">Editar datos</a> </p>
+                   <p>  <a  class="btn btn-secondary minimarg2  " href="{{ path('app_diagnostico_pdfgen', {'id': diagnostico.id}) }}"> <img title="Sesión" class="fotoMenu" width="33px" src="/images/diagnosticoMedic.png">Informe en pdf</a> </p>
+                   <p><form method="post" action="{{ path('app_diagnostico_delete', {'id':  diagnostico.id}) }}" onsubmit="return confirm('¿Realmente desea borrar este diagnóstico?');">
+                   <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ diagnostico.id) }}">
+                   <button class="btn btn-warning minimarg2" aria-label="Borrar sesión"><img title="Sesión" class="fotoMenu" width="33px" src="/images/borrar2.png">Borrar</button></p>
+            
+                  
+            <br/>
+           
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+{# display navigation #}
+
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
+
+
+
+   
+{% endblock %}

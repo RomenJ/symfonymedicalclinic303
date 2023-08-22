@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Va a eliminar al/la siguiente paciente: Nombre: {{ paciente.name }}, Apellido: {{ paciente.surname }}. ¿Desea proceder?</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

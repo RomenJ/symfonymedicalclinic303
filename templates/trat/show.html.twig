@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trat{% endblock %}
+
+{% block body %}
+    <h1>Trat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ trat.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ trat.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ trat.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Borrado</th>
+                <td>{{ trat.borrado ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_trat_index') }}">back to list</a>
+
+    <a href="{{ path('app_trat_edit', {'id': trat.id}) }}">edit</a>
+
+    {{ include('trat/_delete_form.html.twig') }}
+{% endblock %}

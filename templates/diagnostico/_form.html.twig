@@ -1,0 +1,66 @@
+{{ form_start(form) }}
+   
+<form>
+   <div class="form-row">
+    <div class="form-group col-md-6 newForm">
+           <h3>  Paciente </h3>
+
+        
+               {{ form_row(form.paciente) }}
+                <h3>  Médico </h3>
+               {{ form_row(form.medico) }}
+
+                <h3>  Notas </h3>
+               {{ form_row(form.notas) }}
+
+               <h3>  Pruebas realizadas </h3>
+               {{ form_row(form.Pruebas) }}
+
+
+
+
+
+{#Patología que presenta sin UX #}
+{#
+ <h3> Pruebas realizadas  </h3> 
+           {% for prueb in form.pruebas %}
+    <div class="form-check">
+        {{ form_widget(prueb, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_label(prueb, prueb.vars.label, {'label_attr': {'class': 'form-check-label'}}) }}
+    </div>
+{% endfor %}
+
+
+#}
+{#Patología que presenta sin UX #}
+
+ <h3> Patologías posibles que presenta</h3> 
+
+{{ form_row(form.patologias) }}
+ {#
+           {% for patologia in form.patologias %}
+    <div class="form-check">
+        {{ form_widget(patologia, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_label(patologia, patologia.vars.label, {'label_attr': {'class': 'form-check-label'}}) }}
+    </div>
+{% endfor %}
+#}
+
+ <h3> Tratamientos prescritos </h3> 
+      
+      {{ form_row(form.trats) }}
+         {#
+           {% for tratam in form.trats %}
+    <div class="form-check">
+        {{ form_widget(tratam, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_label(tratam, tratam.vars.label, {'label_attr': {'class': 'form-check-label'}}) }}
+    </div>
+{% endfor %}
+
+#}
+<br/>
+       </div>
+    </div>
+    <button class="btn btn-primary botonbasic col-md-6">{{ button_label|default('Guardar') }}</button>
+{{ form_end(form) }}
+</form>

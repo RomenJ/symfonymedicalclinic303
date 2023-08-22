@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Patología en detalle {% endblock %}
+
+{% block body %}
+    <h1>Patología</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Título</th>
+                <td>{{ pato.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>{{ pato.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Código CIE</th>
+                <td>{{ pato.codcie }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a  class="btn btn-info" href="{{ path('app_pato_index') }}">Volver a la lista </a>
+
+    <a  class="btn btn-warning" href="{{ path('app_pato_edit', {'id': pato.id}) }}">editar</a>
+
+    {{ include('pato/_delete_form.html.twig') }}
+{% endblock %}

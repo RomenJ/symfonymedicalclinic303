@@ -1,0 +1,64 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %} Indice de medicos {% endblock %}
+
+{% block body %}
+
+
+
+<h1 aria-label="Listado de pacientes">Listado de médicos</h1>
+<br/>
+{% if app.user %}
+
+<a class="btn btn-primary" class="Blanco btnfalse2 medio" href="{{path('app_register')}}" aria-label="Crear nuevo médico"><img title="Sesión"class="fotoMenu" width="33px" src="/images/familia.png">Crear nuevo médico</a>
+
+{% endif %}
+
+<br/>
+<table>
+    <tr>
+        {# sorting of properties based on query components #}
+        <th><b>{{ knp_pagination_sortable(pagination, 'Nombre facultativo', 'a.id') }}</b></th>
+        <th><b>{{ knp_pagination_sortable(pagination, 'Rol', 'a.id') }}</b></th>
+        <th><b> Acciones   </b></th>
+        {# <th><b>{{ knp_pagination_sortable(pagination, 'Foto', 'a.id') }}</b></th> #}
+
+</tr>
+
+{# table body #}
+{% for medico in pagination %}
+  {% if medico.borrado  != 1  %}
+    <tr {% if loop.index is odd %}class="color"{% endif %}>
+      
+  <tr>
+              <td>  <a  href="{{ path('app_user_show', {'id': medico.id}) }}">{{ medico.username }}</a></td>
+            
+              <td>{{ medico.roles ? medico.roles|json_encode : '' }}</td>
+        
+            <td>
+
+   <a  class="btn btn-secondary mini2" href="{{ path('app_user_edit', {'id': medico.id}) }}"> <img title="Sesión" class="fotoMenu" width="33px" src="/images/editar.png">Editar</a>
+   <a class="btn btn-warning mini2" href="{{ path('app_user_baneame', {'id': medico.id}) }}"><img title="Sesión" class="fotoMenu" width="33px" src="/images/borrar2.png">Borrar</a>
+                    
+                </td>
+   </tr>     
+  
+
+ {% endif %}
+{% endfor %}
+
+
+
+
+</table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
+{% endblock %}
+
+
+
+
