@@ -1,2 +1,3 @@
 # symfonymedicalclinic303
- Project version of the final cycle of Professional Training of Superior Technician in DAW web development for the IES Hermengeildo Lanz (Granada)
+
+Sanitary database of patients. Final project for Professional Training in Web developer for the IES Hermenegilo Lanz
